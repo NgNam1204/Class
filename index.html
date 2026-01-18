@@ -31,21 +31,16 @@
 
         /* --- HEADER & HERO SECTION --- */
 		header {
-		    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/anh-nen-lop.jpg');
-		    background-size: cover; /* Phủ kín khung hình */
-		    background-position: center; /* Luôn giữ tâm ảnh ở giữa */
-		    
-		    /* QUAN TRỌNG: Trên điện thoại, thuộc tính 'fixed' thường gây lỗi hiển thị, 
-		       hãy đổi thành 'scroll' hoặc bỏ dòng này đi để mượt mà hơn */
-		    background-attachment: scroll; 
-		    
-		    height: 100vh; /* Chiều cao bằng 100% màn hình thiết bị */
+		    /* Sử dụng ảnh ngang cho màn hình lớn */
+		    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+		                url('images/anh-nen-lop.jpg') no-repeat center center;
+		    background-size: cover;
+		    background-attachment: fixed; /* Hiệu ứng đẹp cho máy tính */
+		    height: 100vh;
 		    display: flex;
 		    justify-content: center;
 		    align-items: center;
-		    text-align: center;
 		    color: white;
-		    position: relative;
 		}
 
         .header-content h1 {
@@ -222,27 +217,21 @@
             to {opacity: 1;}
         }
 
-        /* Responsive cho điện thoại */
-		/* Tối ưu cho điện thoại */
+		/* 2. THAY ĐỔI RIÊNG CHO ĐIỆN THOẠI (Màn hình nhỏ hơn 768px) */
 		@media (max-width: 768px) {
 		    header {
-		        height: 60vh; /* Giảm chiều cao xuống 60% trên điện thoại để người dùng thấy ngay nội dung dưới */
-		        background-attachment: scroll; /* Tắt hiệu ứng đứng yên để tránh giật lag trên mobile */
+		        /* Thay bằng đường dẫn ảnh dọc đã chuẩn bị */
+		        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+		                    url('images/anh-nen-mobile.jpg') no-repeat center center;
+		        
+		        background-size: cover;
+		        /* Tắt fixed trên mobile để tránh lỗi hiển thị */
+		        background-attachment: scroll; 
+		        height: 70vh; /* Có thể giảm chiều cao để dễ cuộn hơn trên mobile */
 		    }
 		
-		    .header-content h1 { 
-		        font-size: 2rem; /* Chữ tên lớp nhỏ lại để không bị tràn dòng */
-		    }
-		    
-		    .header-content p {
-		        font-size: 1rem; /* Slogan nhỏ lại */
-		        padding: 0 10px;
-		    }
-		
-		    nav a { 
-		        margin: 0 2px; 
-		        padding: 8px 12px; 
-		        font-size: 0.8rem; /* Menu nhỏ lại để không bị nhảy xuống hàng */
+		    .header-content h1 {
+		        font-size: 2.2rem; /* Chữ nhỏ lại cho vừa màn hình điện thoại */
 		    }
 		}
         }
@@ -371,5 +360,6 @@
 </body>
 
 </html>
+
 
 
