@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kỷ Yếu Lớp 12A4 - Những Tháng Năm Rực Rỡ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CÀI ĐẶT CHUNG --- */
+        :root {
+            --primary-color: #ff9f43; /* Màu cam ấm áp */
+            --secondary-color: #54a0ff; /* Màu xanh hy vọng */
+            --bg-color: #fdfdfd;
+            --text-color: #2f3542;
+            --card-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* --- HEADER & HERO SECTION --- */
+        header {
+           background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/anh-nen-lop.jpg');
+			background-size: cover;
+			background-position: center;
+			background-attachment: fixed; /* Tạo hiệu ứng Parallax khi cuộn */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .header-content h1 {
+            font-family: 'Pacifico', cursive; /* Font chữ viết tay nghệ thuật */
+            font-size: 4rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .header-content p {
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            animation: bounce 2s infinite;
+            font-size: 2rem;
+            color: white;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        /* --- THANH ĐIỀU HƯỚNG --- */
+        nav {
+            background-color: white;
+            position: sticky; /* Dính thanh menu lên đầu khi cuộn */
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: center;
+            padding: 15px 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 700;
+            margin: 0 15px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* --- PHẦN NỘI DUNG CHÍNH --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            margin-top: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            display: block;
+            width: 50%;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 5px auto 0;
+            border-radius: 2px;
+        }
+
+        /* --- THƯ VIỆN ẢNH (GRID SYSTEM) --- */
+        .gallery-grid {
+            display: grid;
+            /* Tự động chia cột, tối thiểu 280px mỗi ảnh */
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .photo-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-5px); /* Hiệu ứng nhấc ảnh lên khi di chuột */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 250px; /* Chiều cao cố định để lưới đều nhau */
+            object-fit: cover; /* Cắt ảnh đẹp không bị méo */
+            display: block;
+        }
+
+        .photo-caption {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .photo-caption h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .photo-caption p {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--text-color);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        /* --- LIGHTBOX (MODAL XEM ẢNH LỚN) --- */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        /* Responsive cho điện thoại */
+        @media (max-width: 768px) {
+            .header-content h1 { font-size: 2.5rem; }
+            nav a { margin: 0 5px; padding: 8px 10px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="trangchu">
+        <div class="header-content">
+            <h1>Lớp 12a4 - THPT Đan Phượng</h1>
+            <p>Niên khóa 2023 - 2026 • "Đoàn kết là chấp hết"</p>
+        </div>
+        <div class="scroll-down">↓</div>
+    </header>
+
+    <nav>
+        <a href="#trangchu">Trang chủ</a>
+        <a href="#kyyeu">Ảnh Kỷ Yếu</a>
+        <a href="#hoatdong">Hoạt Động</a>
+        <a href="#sinhnhat">Góc Sinh Nhật</a>
+    </nav>
+
+    <main class="container">
+
+        <section id="kyyeu">
+            <div class="section-title">
+                <h2>📸 Kỷ Yếu Thanh Xuân</h2>
+                <p>Nơi lưu giữ những nụ cười rạng rỡ nhất trước khi ra trường</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="photo-card" onclick="openLightbox(this)">
+                    <img src="images/tap-the-lop.jpg" alt="Tập thể lớp">
+                    <div class="photo-caption">
+                        <h3>Tập thể lớp 11A4</h3>
+                        <p>Ngày chụp: 05/09/2024</p>
+                    </div>
+                </div>
+                <div class="photo-card" onclick="openLightbox(this)">
+                    <img src="images/toi-ky-yeu.jpg" alt="Đêm pháo ho">
+                    <div class="photo-caption">
+                        <h3>Đêm pháo hoa</h3>
+                        <p>Luôn vui vẻ và đoàn kết</p>
+                    </div>
+                </div>
+                <div class="photo-card" onclick="openLightbox(this)">
+                    <img src="images/lop-hoc.jpg" alt="Lớp học">
+                    <div class="photo-caption">
+                        <h3>Lớp học</h3>
+                        <p>Nơi chứa đựng tri thức</p>
+                    </div>
+                </div>
+                </div>
+        </section>
+
+        <hr style="margin: 60px 0; border: 0; border-top: 1px dashed #ddd;">
+
+        <section id="hoatdong">
+            <div class="section-title">
+                <h2>🏕️ Hoạt Động Ngoại Khóa</h2>
+                <p>Những chuyến đi, những buổi cắm trại đáng nhớ</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="photo-card" onclick="openLightbox(this)">
+                    <img src="images/du-lich.jpg" alt="Du lịch">
+                    <div class="photo-caption">
+                        <h3>DU lịch Mộc Châu</h3>
+                        <p>Thác nước và những kỷ niệm</p>
+                    </div>
+                </div>
+                 <div class="photo-card" onclick="openLightbox(this)">
+                    <img src="images/bong-chuyen.jpg" alt="Bóng chuyền">
+                    <div class="photo-caption">
+                        <h3>Giải bóng chuyền toàn trường</h3>
+                        <p>Vô địch!</p>
+                    </div>
+                </div>
+                 <div class="photo-card" onclick="openLightbox(this)">
+                    <img src="images/tet.jpg" alt="Chúc tết">
+                    <div class="photo-caption">
+                        <h3>Chúc tết tại nhà cô</h3>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="sinhnhat" style="margin-top: 60px;">
+             <div class="section-title">
+                <h2>🎂 Góc Sinh Nhật</h2>
+                <p>Happy Birthday các thành viên trong lớp</p>
+            </div>
+            <div class="gallery-grid">
+                </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Lớp 12A4. Designed with ❤️ by [NgNamm].</p>
+        <p>Lưu giữ mãi những kỷ niệm đẹp nhất.</p>
+    </footer>
+
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="close-btn">&times;</span>
+        <img id="lightbox-img" src="" alt="Ảnh lớn">
+    </div>
+
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        // Hàm mở ảnh lớn
+        function openLightbox(element) {
+            const img = element.querySelector('img');
+            lightboxImg.src = img.src; // Lấy nguồn ảnh từ ảnh nhỏ gán cho ảnh lớn
+            lightbox.style.display = 'flex'; // Hiện lightbox
+        }
+
+        // Hàm đóng ảnh
+        function closeLightbox() {
+            lightbox.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
