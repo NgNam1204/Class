@@ -150,29 +150,34 @@
             margin-top: 50px;
         }
 
-        /* --- XỬ LÝ RIÊNG CHO ĐIỆN THOẠI --- */
+/* --- XỬ LÝ RIÊNG CHO ĐIỆN THOẠI --- */
         @media (max-width: 768px) {
             header {
-                /* Ép buộc dùng ảnh mobile bằng !important */
-                background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                            url('images/anh-nen-mobile.jpg') no-repeat center center !important;
+                /* Ép buộc dùng ảnh mobile */
+                background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                            url('images/anh-nen-mobile.jpg') no-repeat center bottom !important; /* center bottom để lấy phần chân ảnh (nơi mọi người đứng) */
                 background-size: cover !important;
                 background-attachment: scroll !important; 
-                height: 70vh !important;
+                height: 60vh !important; /* Giảm chiều cao xuống còn 60% màn hình */
             }
 
             .header-content h1 {
-                font-size: 2rem !important;
+                font-size: 1.6rem !important; /* Đã giảm từ 2rem xuống 1.6rem */
+                line-height: 1.3; /* Giãn dòng ra một chút cho thoáng */
+                padding: 0 10px; /* Cách lề 2 bên để không sát mép màn hình */
             }
 
             .header-content p {
-                font-size: 1rem !important;
+                font-size: 0.85rem !important; /* Đã giảm từ 1rem xuống 0.85rem */
+                margin-top: 8px;
+                font-weight: normal !important;
             }
 
+            /* Chỉnh lại thanh menu cho nhỏ gọn */
             nav a {
-                margin: 5px;
-                padding: 5px 10px;
-                font-size: 0.6rem;
+                margin: 2px;
+                padding: 5px 8px;
+                font-size: 0.75rem; /* Giảm cỡ chữ menu một chút */
             }
         }
 
@@ -311,6 +316,7 @@
     </script>
 </body>
 </html>
+
 
 
 
