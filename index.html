@@ -150,43 +150,44 @@
             margin-top: 50px;
         }
 
-            /*@media (max-width: 768px) {
-        header {
-            /* Giảm chiều cao một chút để thấy phần nội dung dưới nhanh hơn */
-            height: 70vh !important;
-            background-attachment: scroll !important;
+        @media (max-width: 768px) {
+            header {
+                /* Giảm chiều cao một chút để thấy phần nội dung dưới nhanh hơn */
+                height: 70vh !important;
+                background-attachment: scroll !important;
+            }
+        
+            .header-content h1 {
+                /* Giảm kích thước font chữ để không bị nhảy dòng quá nhiều */
+                font-size: 2.2rem !important;
+                line-height: 1.2;
+                padding: 0 15px; /* Giữ khoảng cách với 2 mép màn hình */
+            }
+        
+            .header-content p {
+                /* Giảm kích thước slogan */
+                font-size: 0.9rem !important;
+                margin-top: 10px;
+                padding: 0 20px;
+            }
+        
+            /* Tùy chỉnh menu cho gọn */
+            nav {
+                padding: 10px 0;
+                overflow-x: auto; /* Cho phép vuốt ngang menu nếu quá dài */
+                white-space: nowrap;
+            }
+        
+            nav a {
+                margin: 0 5px;
+                padding: 5px 10px;
+                font-size: 0.8rem;
+            }
         }
-    
-        .header-content h1 {
-            /* Giảm kích thước font chữ để không bị nhảy dòng quá nhiều */
-            font-size: 2.2rem !important;
-            line-height: 1.2;
-            padding: 0 15px; /* Giữ khoảng cách với 2 mép màn hình */
-        }
-    
-        .header-content p {
-            /* Giảm kích thước slogan */
-            font-size: 0.9rem !important;
-            margin-top: 10px;
-            padding: 0 20px;
-        }
-    
-        /* Tùy chỉnh menu cho gọn */
-        nav {
-            padding: 10px 0;
-            overflow-x: auto; /* Cho phép vuốt ngang menu nếu quá dài */
-            white-space: nowrap;
-        }
-    
-        nav a {
-            margin: 0 5px;
-            padding: 5px 10px;
-            font-size: 0.8rem;
-        }
-    }
 
-
-        /* --- LIGHTBOX --- */
+        
+         
+              /* --- LIGHTBOX --- */
         .lightbox {
             display: none;
             position: fixed;
