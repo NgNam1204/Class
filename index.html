@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thử thách 10 Giây</title>
+    <title>Thử thách 10s (May mắn)</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -15,11 +15,10 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            user-select: none; /* Ngăn bôi đen văn bản khi click nhanh */
+            user-select: none;
         }
 
         h1 { font-size: 2rem; margin-bottom: 10px; }
-
         .target { color: #e67e22; font-weight: bold; font-size: 2.2rem; }
 
         #timer {
@@ -46,8 +45,6 @@
         }
 
         #actionBtn:active { transform: scale(0.95); }
-        
-        /* Màu đỏ khi nút chuyển sang trạng thái Dừng */
         #actionBtn.stop { background-color: #c0392b; }
 
         #message {
@@ -56,6 +53,7 @@
             height: 30px;
             color: #ecf0f1;
             font-weight: 500;
+            text-align: center;
         }
     </style>
 </head>
@@ -73,8 +71,6 @@
         let startTime;
         let tInterval;
         let running = false;
-        
-        // MỐC THỜI GIAN MỤC TIÊU (Bạn có thể sửa số này tùy ý)
         const TARGET_TIME = 10.00;
 
         const timerDisplay = document.getElementById('timer');
@@ -91,11 +87,11 @@
 
         function startGame() {
             startTime = new Date().getTime();
-            tInterval = setInterval(updateTimer, 10); 
+            tInterval = setInterval(updateTimer, 10); // Cập nhật mỗi 10ms (0.01s)
             running = true;
             
             actionBtn.innerHTML = "DỪNG LẠI!";
-            actionBtn.className = "stop"; // Đổi màu nút sang đỏ
+            actionBtn.className = "stop";
             messageDisplay.innerHTML = ""; 
             timerDisplay.style.color = "white";
         }
@@ -104,8 +100,22 @@
             clearInterval(tInterval);
             running = false;
             
+            // --- LOGIC MAY MẮN (50%) ---
+            // Lấy giá trị thời gian thực tế lúc bấm dừng
+            let currentTime = parseFloat(timerDisplay.innerHTML);
+
+            // Kiểm tra nếu nằm trong khoảng 9.98 đến 10.02
+            if (currentTime >= 9.98 && currentTime <= 10.02) {
+                // Math.random() trả về số từ 0 đến 1. Nếu nhỏ hơn 0.5 (tức là 50%)
+                if (Math.random() < 0.5) {
+                    timerDisplay.innerHTML = "10.00"; // Ép về 10.00
+                    console.log("Đã kích hoạt may mắn!"); // Kiểm tra trong F12 Console
+                }
+            }
+            // ---------------------------
+
             actionBtn.innerHTML = "Chơi lại";
-            actionBtn.className = ""; // Trả về màu xanh
+            actionBtn.className = "";
             
             checkResult();
         }
@@ -117,7 +127,6 @@
             let seconds = Math.floor((difference % (1000 * 60)) / 1000);
             let milliseconds = Math.floor((difference % 1000) / 10);
 
-            // Thêm số 0 đằng trước nếu nhỏ hơn 10
             seconds = (seconds < 10) ? "0" + seconds : seconds;
             milliseconds = (milliseconds < 10) ? "0" + milliseconds : milliseconds;
 
@@ -130,14 +139,14 @@
             
             if (diff == 0.00) {
                 messageDisplay.innerHTML = "🏆 ĐỈNH CAO! CHUẨN KHÔNG CẦN CHỈNH! 🏆";
-                messageDisplay.style.color = "#f1c40f";
+                messageDisplay.style.color = "#f1c40f"; // Vàng
                 timerDisplay.style.color = "#f1c40f";
             } else if (diff <= 0.10) {
-                messageDisplay.innerHTML = `Suýt soát! Lệch có ${diff}s thôi!`;
-                messageDisplay.style.color = "#2ecc71"; // Màu xanh lá
+                messageDisplay.innerHTML = `Suýt soát! Lệch ${diff}s.`;
+                messageDisplay.style.color = "#2ecc71"; // Xanh lá
             } else {
-                messageDisplay.innerHTML = `Lệch ${diff}s. Cố gắng lên!`;
-                messageDisplay.style.color = "#ecf0f1";
+                messageDisplay.innerHTML = `Lệch ${diff}s. Cố lên!`;
+                messageDisplay.style.color = "#ecf0f1"; // Trắng nhạt
             }
         }
         
